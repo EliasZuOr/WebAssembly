@@ -1,0 +1,128 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 10;
+    padding: 10;
+background-color: #ecf0f1;
+}
+
+header, footer {
+    background-image: url(Playa.jpg);
+    background-size: 590px 180px;
+    color: #ffffffdd;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e5dec3;
+    background-color:#f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #e8d5bf;
+}
+
+button {
+    background-color:#b0a187;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:#b0a07d ;
+}
+
+#resultados {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.resultado {
+    background-color: #ecf0f1;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ced29d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-around;
+    margin: 0%;
+    background-color: #b0a07d;
+}
+.menu a{
+    font-size: 0.75rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: bold;
+    color: beige;
+    width: 15rem ;
+    text-align: center;
+    padding:0.75rem 0;
+}
+.menu a:hover{
+    background-color: rgb(244, 218, 184);
+    color: beige;
+    font-size: Arial;
+    color: black;
+}
+
+.comentariosp1{
+  display: flex;
+  justify-content: space-around;
+  margin: 8%;
+  background-color: #d3cdc0;
+font-family: 'Times New Roman', Times, serif;
+  color: #000000;
+}
+
+.comentariosp2{
+  display: flex;
+  justify-content: space-around;
+  margin: 8%;
+  background-color: #7e7358;
+font-family: 'Times New Roman', Times, serif;
+  color: #f4eedc;
+}
+
+.comentariosp3{
+  display: flex;
+  justify-content: space-around;
+  margin: 8%;
+  background-color: #f4eddc;
+font-family: 'Times New Roman', Times, serif;
+  color: #000000;
+}

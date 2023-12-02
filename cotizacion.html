@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="DLL.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Hotel WebAssembly</h1>
+  </header>
+  <div class="nav-fondo">
+    <nav class="menu">
+      <a href="Inicio.html">Inicio</a>
+      <a href="index.html">Cotización</a>
+      <a href="Comentarios.html">Comentarios</a>
+      <a href="Redes.html">Redes</a>
+    </nav>
+  </div>
+  <script>
+    function run_wasm() {
+      var dias = document.querySelector("#dias").value;
+      var personas = document.querySelector("#personas").value;
+      result = Module.ccall(
+        "cotizar",
+        "number",
+        ["number", "number"],
+        [dias, personas]
+      );
+      document.querySelector("#ret")
+        .innerHTML += `${result} pesos mexicanos<br/>`;
+    }
+  </script>
+  <label>Dias de hospedaje</label>
+  <input type="number" id="dias">
+  <br>
+  <label>Total de personas</label>
+  <input type="number" id="personas">
+  <br>
+  <button onclick="run_wasm()">Reservar</button>
+  <br>
+  <h2>Total: </h2>
+  <p id="ret"></p>
+  <button onclick="location.href='admin.html'">Administrador</button>
+  <button onclick="location.href='index.html'">Atras</button>
+</body>
+
+</html>

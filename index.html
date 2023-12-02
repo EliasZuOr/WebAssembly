@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Configuración de la página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Hotel WebAssembly</title>
+</head>
+
+<body>
+  <!-- Encabezado de la página -->
+  <header>
+    <h1>Hotel WebAssembly</h1>
+  </header>
+  <div class="nav-fondo">
+    <nav class="menu">
+      <a href="Inicio.html">Inicio</a>
+      <a href="cotizacion.html">Cotización</a>
+      <a href="Comentarios.html">Comentarios</a>
+      <a href="Redes.html">Redes</a>
+    </nav>
+  </div>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Sección de búsqueda y filtro de habitaciones -->
+    <section>
+      <label for="check-in-date">Fecha de entrada:</label>
+      <input type="date" id="check-in-date">
+
+      <label for="check-out-date">Fecha de salida:</label>
+      <input type="date" id="check-out-date">
+
+      <label for="guest-count">Cantidad de huéspedes:</label>
+      <input type="number" id="guest-count" min="1">
+
+      <!-- Botón para ordenar los resultados por precio -->
+      <button onclick="ordenarPorPrecio()">Cotizar</button>
+    </section>
+
+    <!-- Sección donde se mostrarán los resultados de las habitaciones -->
+    <section id="resultados">
+      <!-- Aquí se mostrarán los resultados -->
+      <div class="resultado">Habitación 1 - $100</div>
+      <div class="resultado">Habitación 2 - $150</div>
+      <div class="resultado">Habitación 3 - $250</div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2023 Hotel WebAssembly</p>
+  </footer>
+
+  <!-- Script para la lógica de ordenamiento (actualmente como marcador de posición) -->
+  <script>
+    // Aquí se agregaría la lógica de WebAssembly en C++
+    function ordenarPorPrecio() {
+      // Lógica de ordenamiento y actualización de resultados
+
+      // Obtener la sección de resultados y los elementos de resultado
+      var resultadosSection = document.getElementById("resultados");
+      var resultados = resultadosSection.getElementsByClassName("resultado");
+
+      // Convertir la colección de resultados a un array para facilitar la manipulación
+      var resultadosArray = Array.from(resultados);
+
+      // Ordenar los resultados según el precio
+      resultadosArray.sort(function (a, b) {
+        // Extraer precios de las cadenas y comparar
+        var precioA = parseInt(a.textContent.split('$')[1]);
+        var precioB = parseInt(b.textContent.split('$')[1]);
+
+        return precioA - precioB;
+      });
+
+      // Limpiar la sección de resultados
+      resultadosSection.innerHTML = "";
+
+      // Agregar resultados ordenados de nuevo a la sección
+      resultadosArray.forEach(function (resultado) {
+        resultadosSection.appendChild(resultado);
+      });
+    }
+  </script>
+
+</body>
+
+</html>
