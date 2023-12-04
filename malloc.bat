@@ -1,1 +1,0 @@
-emcc malloc.c -o malloc.js
