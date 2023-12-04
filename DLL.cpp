@@ -25,6 +25,8 @@ public:
     void mostrarInicio();
     void mostrarFin();
     void borrarValor(int valor);
+    void ordenar();
+    void resultado();
     EMSCRIPTEN_KEEPALIVE
     int cotizar(int dias, int personas);
 };
@@ -76,7 +78,7 @@ void DLL::mostrarFin() {
 
 void DLL::borrarValor(int valor) {
     if (inicio == NULL) {
-        cout << "No se puede borrar el elemento " << valor << " porque la lista est� vac�a" << endl;
+        cout << "No se puede borrar el elemento " << valor << " porque la lista esta vacia" << endl;
     } else if (inicio->info == valor) {
         Nodo* borrarInicio = inicio;
         inicio = inicio->der;
@@ -118,7 +120,95 @@ int cotizar(int dias, int personas){
 };
   }
 
-int main() {
+// Función para obtener el nodo medio de la lista
+Nodo* obtenerMedio(Nodo* inicio, Nodo* fin) {
+    if (!inicio)
+        return nullptr;
+
+    Nodo* lento = inicio;
+    Nodo* rapido = inicio->der;
+
+    while (rapido && rapido->der) {
+        lento = lento->der;
+        rapido = rapido->der->der;
+    }
+
+    return lento;
+}
+
+// Función para realizar la fusión de dos sublistas ordenadas
+Nodo* fusionar(Nodo* izquierda, Nodo* derecha) {
+    Nodo* resultado = nullptr;
+
+    if (!izquierda)
+        return derecha;
+    if (!derecha)
+        return izquierda;
+
+    if (izquierda->info <= derecha->info) {
+        resultado = izquierda;
+        resultado->der = fusionar(izquierda->der, derecha);
+        if (resultado->der)
+            resultado->der->izq = resultado;
+    } else {
+        resultado = derecha;
+        resultado->der = fusionar(izquierda, derecha->der);
+        if (resultado->der)
+            resultado->der->izq = resultado;
+    }
+
+    return resultado;
+}
+
+// Función principal de Merge Sort
+Nodo* mergeSort(Nodo* inicio, Nodo* fin) {
+    if (inicio == fin || !inicio)
+        return inicio;
+
+    Nodo* medio = obtenerMedio(inicio, fin);
+    Nodo* siguienteDeMedio = medio->der;
+
+    medio->izq = nullptr;
+    medio->der = nullptr;
+
+    Nodo* izquierda = mergeSort(inicio, medio);
+    Nodo* derecha = mergeSort(siguienteDeMedio, fin);
+
+    return fusionar(izquierda, derecha);
+}
+
+// Función para ordenar la lista usando Merge Sort
+void ordenar() {
+  Nodo* inicio;
+  Nodo* fin;
   
-  return 0;
-};
+    inicio = mergeSort(inicio, fin);
+    Nodo* actual = inicio;
+    while (actual->der) {
+        actual = actual->der;
+    }
+    fin = actual;
+}
+
+void DLL::resultado() {
+    Nodo* actual = inicio;
+    while (actual != nullptr) {
+        cout << actual->info << " ";
+        actual = actual->der;
+    }
+    cout << endl;
+}
+
+  int main() {
+
+    cout << "Lista antes de ordenar:" << endl;
+      lista.mostrarInicioFin();
+
+      // Llamada a cotizar que agrega elementos y ordena la lista
+      lista.cotizar(2, 3);
+
+      cout << "Lista después de ordenar:" << endl;
+      lista.mostrarInicioFin();
+
+      return 0;
+  };
